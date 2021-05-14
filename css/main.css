@@ -5,6 +5,7 @@ body {
     font-weight: 400;
     line-height: 1.4;
     font-family: 'Nanum Gothic', sans-serif;
+    height: 3000px;
 }
 img {
     display: block;
@@ -12,18 +13,24 @@ img {
 a {
     text-decoration: none;
 }
+.inner{
+    width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
 
 
 /*HEADER*/
 header {
+    width: 100%;
     background-color: #f6f5f0;
     border-bottom: 1px solid #c8c8c8;
+    position: fixed;
+    /*position: relative 는 badges의 위치상의 부모요소로서 기준이 되도록 한건데 fixed 가 있기때문에 없어도 된다*/
+    top: 0;
 }
-header .inner {
-    width: 1100px;
+header > .inner { /*header의 바로자식부분인 inner만 해당 '자식선택자'*/
     height: 120px;
-    margin: 0 auto;
-    position: relative;
 }
 header .logo {
     height: 75px;
@@ -100,4 +107,82 @@ header .sub-menu .search .material-icons {
 }
 header .sub-menu .search.focused .material-icons {
     opacity: 0;
+}
+header .main-menu {
+    display: flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+header .main-menu .item {
+
+}
+header .main-menu .item .item__name {
+    font-size: 13px;
+    padding: 10px 20px 34px 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+header .main-menu .item:hover .item__name {
+    background-color: #2c2a29;
+    color: #669900;
+    border-radius: 6px 6px 0 0;
+}
+header .main-menu .item .item__contents {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    display: none;
+}
+header .main-menu .item:hover .item__contents{
+    display: block;
+}
+header .main-menu .item .item__contents .contents__menu {
+    background-color: #2c2a29;
+}
+header .main-menu .item .item__contents .contents__menu > ul {
+    display: flex;
+    padding: 20px 0;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li {
+    width: 220px;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+    color: #fff;
+    padding: 3px 0 12px 0;
+    font-size: 14px;
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul {
+
+}
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+    padding: 5px 0;
+    color: #999;
+    font-size: 12px;
+    cursor: pointer;
+}
+header .main-menu .item .item__contents .contents__texture {
+    background-image: url('../images/main_menu_pattern.jpg');
+    padding: 26px 0;
+    font-size: 12px;
+}
+header .main-menu .item .item__contents .contents__texture h4 {
+    color: #999;
+    font-weight: 700;
+}
+header .main-menu .item .item__contents .contents__texture p {
+    color: #669900;
+    margin: 4px 0 14px;
+}
+header .badges {
+    position: absolute;
+    top: 132px;
+    right: 12px;
+}
+header .badges .badge {
+    border-radius: 10px;
+    overflow: hidden;/*싱지밖으로 넘치는 부분을 보이지 않게 해준다*/
+    margin-bottom: 12px;
+    cursor: pointer;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
 }
