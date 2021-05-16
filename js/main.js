@@ -16,8 +16,9 @@ searchInputEl.addEventListener('blur', function(){
 });
 
 
-const badgeEl = document.querySelector('header .badges');
 
+const badgeEl = document.querySelector('header .badges');
+// _.throttle(함수, 시간)
 window.addEventListener('scroll', _.throttle(function(){
     console.log(window.scrollY);
     if (window.scrollY > 500) {
@@ -35,4 +36,23 @@ window.addEventListener('scroll', _.throttle(function(){
         })
     }
 }, 300)); 
-// _.throttle(함수, 시간)
+
+
+
+const fadeEls = document.querySelectorAll('.visual .fade-in'); //가져올 객체가 여러개 이므로 queryselectorall 이다.
+fadeEls.forEach(function(fadeEl, index){   //index 는 0에서 부터 시작(foreach 되는 fadeEl의 순서)
+    //gsap.to(요소, 지속시간(초), 옵션);
+    gsap.to(fadeEl, 1, {
+        delay : (index + 1) * .7,   //0.7, 1.4, 2.1, 2.8
+        opacity : 1
+    });
+});
+
+
+
+//new Swiper(선택자, 옵션)
+new Swiper('.notice-line .swiper-container', {
+    direction: 'vertical',  //수직
+    autoplay: true,  
+    loop: true        //반복 재생 여부
+});
