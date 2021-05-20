@@ -56,6 +56,8 @@ new Swiper('.notice-line .swiper-container', {
     autoplay: true,  
     loop: true        //반복 재생 여부
 });
+
+
 new Swiper('.promotion .swiper-container',{
     //direction: 'horizontal' 수평정렬이 기본값이기 때문에 따로 명시 안해도 됨
     slidesPerView: 3, //한번에 보여줄 슬라이드 개수
@@ -72,6 +74,18 @@ new Swiper('.promotion .swiper-container',{
     navigation: {
         nextEl: '.promotion .swiper-next',
         prevEl: '.promotion .swiper-prev'
+    }
+});
+
+
+new Swiper('.awards .swiper-container', {
+    autoplay: true,
+    loop: true,
+    spaceBetween: 30,
+    slidesPerView: 5,
+    navigation: {
+        prevEl: '.awards .swiper-prev',
+        nextEl: '.awards .swiper-next'
     }
 });
 
@@ -113,3 +127,16 @@ floatingObject('.floating2', .5, 15);
 floatingObject('.floating3', 1.5, 20);
 
 console.log((Math.random() * 4).toFixed(3));
+
+
+
+const spyEls = document.querySelectorAll('.scroll-spy');
+spyEls.forEach(function(spyEl){
+    new ScrollMagic
+        .Scene({
+            triggerElement: spyEl,  //보여짐 여부를 감시할 요소를 지정
+            triggerHook: 0.8
+        })
+        .setClassToggle(spyEl, 'show')
+        .addTo(new ScrollMagic.Controller());
+});
