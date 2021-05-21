@@ -18,6 +18,7 @@ searchInputEl.addEventListener('blur', function(){
 
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#to-top');
 // _.throttle(함수, 시간)
 window.addEventListener('scroll', _.throttle(function(){
     if (window.scrollY > 500) {
@@ -26,16 +27,30 @@ window.addEventListener('scroll', _.throttle(function(){
         gsap.to(badgeEl, .6, {
             opacity : 0,
             display : 'none'
-        })
+        });
+        //scroll up 버튼 보이기
+        gsap.to(toTopEl, .2, {    //요소를 변수로 지정해 가져와도 되지만 gsap은 css선택자만 적어도 알아서 찾는다
+            x: 0
+        });
     } else {
         //배지 보이기
         gsap.to(badgeEl, .6, {
             opacity : 1,
             display : 'block'
-        })
+        });
+        //scroll up 버튼 숨기기
+        gsap.to(toTopEl, .2, {    //요소를 변수로 지정해 가져와도 되지만 gsap은 css선택자만 적어도 알아서 찾는다
+            x: 100
+        });
     }
 }, 300)); 
 
+//scroll up 버튼 event
+toTopEl.addEventListener('click', function(){
+    gsap.to(window, .7, {
+        scrollTo: 0 //gsap 의 scrollToPlugin 을 따로 가져왔기 때문에 실행됨
+    });
+});
 
 
 //main visual
@@ -126,7 +141,7 @@ floatingObject('.floating1', 1, 15);
 floatingObject('.floating2', .5, 15);
 floatingObject('.floating3', 1.5, 20);
 
-console.log((Math.random() * 4).toFixed(3));
+console.log((Math.random() * 4).toFixed(3)); //toFixed(3)은 소수점아래3자리까지 나타내겠단 뜻
 
 
 
@@ -140,3 +155,7 @@ spyEls.forEach(function(spyEl){
         .setClassToggle(spyEl, 'show')
         .addTo(new ScrollMagic.Controller());
 });
+
+
+const thisYear = document.querySelector('.this-year');
+thisYear.textContent = new Date().getFullYear(); //2021
